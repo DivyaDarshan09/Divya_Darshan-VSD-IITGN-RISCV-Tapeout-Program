@@ -93,7 +93,8 @@ assign rstb_h = resetb;
     - Aligns with ASIC reset best practices
 
 ```
-    While analog POR remains a valid silicon concept, modeling it behaviorally in RTL is unnecessary when reset is explicitly provided and externally controlled.
+    While analog POR remains a valid silicon concept, modeling it behaviorally in RTL
+    is unnecessary when reset is explicitly provided and externally controlled.
 ```
 
 **This change is architecturally safe, technically correct, and justified.**
