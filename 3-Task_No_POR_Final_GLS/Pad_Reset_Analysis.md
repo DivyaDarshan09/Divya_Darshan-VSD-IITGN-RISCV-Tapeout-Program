@@ -68,8 +68,8 @@ always @(posedge clk or negedge porb)
 
 ```bash
 | Feature                 | SKY130           | SCL-180         |
-|-------------------------|-----------------|----------------|
-| Reset pad enable        | POR-dependent    | Always available |
+|-------------------------|------------------|-----------------|
+| Reset pad enable        | POR-dependent    | Always available|
 | Level shifters          | External         | Integrated      |
 | Pad power-up dependency | Yes              | No              |
 | Mandatory POR           | Yes              | No              |
