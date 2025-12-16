@@ -1,5 +1,11 @@
+# AREA REPORT
+
+```
 ****************************************
-    DIVYA DARSHAN - NO POR
+            AREA REPORT
+****************************************
+****************************************
+        DIVYA DARSHAN - NO POR
 ****************************************
 
 ****************************************
@@ -31,4 +37,4 @@ Total cell area:                773088.679183
 Total area:                     805879.781527
 
 Information: This design contains black box (unknown) components. (RPT-8)
-
+```
