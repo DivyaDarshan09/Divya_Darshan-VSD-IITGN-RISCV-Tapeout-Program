@@ -8,7 +8,7 @@ As this design uses the SCL-180 standard-cell and I/O pad libraries, some techno
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
 
 ****************************************
-            AREA REPORT
+            POWER REPORT
 ****************************************
 ****************************************
         DIVYA DARSHAN - NO POR
