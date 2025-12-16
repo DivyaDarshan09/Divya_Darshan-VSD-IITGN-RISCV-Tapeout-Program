@@ -176,6 +176,11 @@ module vsdcaravel (
   wire porb_l;
   wire por_l;
 
+
+  assign porb_h = resetb;
+  assign porb_l = resetb;
+  assign por_l = resetb;
+
   wire rstb_h;
 
   // Flash SPI communication (
@@ -310,7 +315,7 @@ module vsdcaravel (
 
       // SoC Core Interface
       .porb_h(porb_h),
-      .por_l(por_l),
+      .porb_l(por_l),
       .rstb_h(rstb_h),
       .clock_core(clock_core),
       .gpio_out_core(gpio_out_core),

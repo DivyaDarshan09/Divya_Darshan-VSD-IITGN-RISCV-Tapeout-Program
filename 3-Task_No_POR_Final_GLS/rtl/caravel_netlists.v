@@ -20,7 +20,7 @@
 
 `ifdef SIM
 
-    `include "defines.v"
+    `include "/defines.v"
     `include "user_defines.v"
     `include "pads.v"
 
@@ -38,7 +38,7 @@
 	`include "gl/mprj2_logic_high.v"
 	`include "gl/mgmt_protect.v"
 //	`include "gl/mgmt_protect_hv.v"
-	`include "gl/constant_block.v"
+	//`include "gl/constant_block.v"////////madank
 	`include "gl/gpio_control_block.v"
 	`include "gl/gpio_defaults_block.v"
 	//`include "gl/gpio_defaults_block_0403.v"
@@ -86,6 +86,6 @@
                 //`include ""
     `endif
 
-    `include "dummy_por.v"
+    //`include "dummy_por.v"
 
 `endif

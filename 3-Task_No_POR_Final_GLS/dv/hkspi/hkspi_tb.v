@@ -23,7 +23,7 @@
 `include "__uprj_netlists.v"
 `include "caravel_netlists.v"
 `include "spiflash.v"
-`include "/home/ddarshan/vsdRiscvScl180/dv/tbuart.v"
+`include "/home/madank/work/vsdRiscvScl180/dv/tbuart.v"
 
 module hkspi_tb;
 	reg clock;
@@ -354,12 +354,10 @@ module hkspi_tb;
 
 		`ifdef GL
 			$display("Monitor: Test HK SPI (GL) Passed");
-			
 		`else
 			$display("Monitor: Test HK SPI (RTL) Passed");
-			
 		`endif
-		$display("DIVYA DARSHAN VR_REPORT");
+
 	    #1000;
  	    $finish;
 	end    

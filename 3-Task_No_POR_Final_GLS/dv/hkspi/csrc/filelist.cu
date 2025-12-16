@@ -4,16 +4,16 @@ ifeq ($(LDVERSION), 0)
 endif
 
 ARCHIVE_OBJS=
-ARCHIVE_OBJS += _27390_archive_1.so
-_27390_archive_1.so : archive.3/_27390_archive_1.a
+ARCHIVE_OBJS += _29967_archive_1.so
+_29967_archive_1.so : archive.2/_29967_archive_1.a
 	@$(AR) -s $<
-	@$(PIC_LD) -shared  -Bsymbolic $(LD_NORELAX_FLAG)  -o .//../simv.daidir//_27390_archive_1.so --whole-archive $< --no-whole-archive
+	@$(PIC_LD) -shared  -Bsymbolic $(LD_NORELAX_FLAG)  -o .//../simv.daidir//_29967_archive_1.so --whole-archive $< --no-whole-archive
 	@rm -f $@
-	@ln -sf .//../simv.daidir//_27390_archive_1.so $@
+	@ln -sf .//../simv.daidir//_29967_archive_1.so $@
 
 
 ARCHIVE_OBJS += _prev_archive_1.so
-_prev_archive_1.so : archive.3/_prev_archive_1.a
+_prev_archive_1.so : archive.2/_prev_archive_1.a
 	@$(AR) -s $<
 	@$(PIC_LD) -shared  -Bsymbolic $(LD_NORELAX_FLAG)  -o .//../simv.daidir//_prev_archive_1.so --whole-archive $< --no-whole-archive
 	@rm -f $@
@@ -40,7 +40,7 @@ objs/udps/FqLFq.o objs/udps/yz1uR.o objs/udps/RUKVA.o objs/udps/afYMY.o objs/udp
 objs/udps/USMy8.o objs/udps/PSwnp.o objs/udps/f0xYg.o objs/udps/tw5vQ.o objs/udps/qwM0m.o  \
 objs/udps/KME4Y.o objs/udps/h5bqa.o objs/udps/Gdmn6.o objs/udps/U6qjI.o objs/udps/DtgyT.o  \
 objs/udps/K79QG.o objs/udps/dUm5G.o objs/udps/ymc5r.o objs/udps/AENcr.o objs/udps/wIL7Z.o  \
-objs/udps/uQKHy.o objs/udps/dxA5k.o objs/udps/t3i5B.o 
+objs/udps/uQKHy.o objs/udps/dxA5k.o 
 
 CU_LVL_OBJS = \
 SIM_l.o 

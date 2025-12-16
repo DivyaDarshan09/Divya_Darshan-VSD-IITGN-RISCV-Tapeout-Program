@@ -15,7 +15,18 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // `default_nettype none
-`include "/home/ddarshan/vsdRiscvScl180/rtl/scl180_wrapper/pt3b02_wrapper.v"
+`include "/home/madank/work/vsdRiscvScl180/rtl/scl180_wrapper/pt3b02_wrapper.v"
+
+
+//madank
+//`include "/home/madank/work/duplicate/vsdRiscvScl180/rtl/constant_block.v"
+//`include "/home/madank/work/duplicate/vsdRiscvScl180/rtl/scl180_wrapper/pc3d01_wrapper.v"
+//`include "/home/madank/work/duplicate/vsdRiscvScl180/rtl/scl180_wrapper/pc3b03ed_wrapper.v"
+//`include "/home/madank/work/duplicate/vsdRiscvScl180/rtl/mprj_io.v"
+//`include "/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/6M1L/verilog/tsl18cio250/zero/pc3d21.v"
+
+
+
 module chip_io(
 	// Package Pins
 	inout  vddio_pad,		// Common padframe/ESD supply

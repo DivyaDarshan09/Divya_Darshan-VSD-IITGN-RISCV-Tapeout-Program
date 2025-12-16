@@ -3245,12 +3245,6 @@
         "module",
         541
     ],
-    "dummy_por": [
-        "dummy_por",
-        "SMwjV",
-        "module",
-        542
-    ],
     "spiflash": [
         "spiflash",
         "CJhmV",
@@ -3466,11 +3460,5 @@
         "dxA5k",
         "udp",
         578
-    ],
-    "dummy__udp_pwrgood_pp_PG": [
-        "dummy__udp_pwrgood_pp_PG",
-        "t3i5B",
-        "udp",
-        579
     ]
 }

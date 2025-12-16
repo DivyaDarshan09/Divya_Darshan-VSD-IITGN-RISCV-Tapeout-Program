@@ -23,10 +23,10 @@ BEHAVIOURAL_MODELS = ../
 RISCV_TYPE ?= rv32imc
 
 FIRMWARE_PATH = ../
-GCC_PATH?=/home/prakhan/rehman/riscv32-unknown-elf/bin
+GCC_PATH?=/home/madank/Downloads/riscv32/bin
 GCC_PREFIX?=riscv32-unknown-elf
 
-SIM_DEFINES = +define+FUNCTIONAL +define+SIM
+SIM_DEFINES = -DFUNCTIONAL -DSIM
 
 SIM?=RTL
 
@@ -36,49 +36,24 @@ PATTERN = hkspi
 
 # Path to management SoC wrapper repository
 scl_io_wrapper_PATH ?= $(RTL_PATH)/scl180_wrapper
+	
 
-# VCS compilation options
-VCS_FLAGS = -sverilog +v2k -full64 -debug_all -lca -timescale=1ns/1ps
-VCS_INCDIR = +incdir+$(BEHAVIOURAL_MODELS) \
-             +incdir+$(RTL_PATH) \
-             +incdir+$(scl_io_wrapper_PATH) \
-             +incdir+$(scl_io_PATH)
+vvp:  ${PATTERN:=.vvp}
 
-# Output files
-SIMV = simv
-COMPILE_LOG = compile.log
-SIM_LOG = simulation.log
+hex:  ${PATTERN:=.hex}
 
-.SUFFIXES:
+vcd:  ${PATTERN:=.vcd}
 
-all: compile
+%.vvp: %_tb.v %.hex
+	iverilog -Ttyp $(SIM_DEFINES) -I $(BEHAVIOURAL_MODELS) \
+	 -I $(RTL_PATH) -I $(scl_io_wrapper_PATH) -I $(scl_io_PATH)  \
+	$< -o $@ 
+ 
+	
 
-hex: ${PATTERN:=.hex}
 
-# VCS Compilation target
-compile: ${PATTERN}_tb.v ${PATTERN}.hex
-	vcs $(VCS_FLAGS) $(SIM_DEFINES) $(VCS_INCDIR) \
-	${PATTERN}_tb.v \
-	-l $(COMPILE_LOG) \
-	-o $(SIMV)
-
-# Run simulation in batch mode
-sim: compile
-	./$(SIMV) -l $(SIM_LOG)
-
-# Run simulation with GUI (DVE)
-gui: compile
-	./$(SIMV) -gui -l $(SIM_LOG) &
-
-# Generate VPD waveform
-vpd: compile
-	./$(SIMV) -l $(SIM_LOG)
-	@echo "VPD waveform generated. View with: dve -vpd vcdplus.vpd &"
-
-# Generate FSDB waveform (if Verdi is available)
-fsdb: compile
-	./$(SIMV) -l $(SIM_LOG)
-	@echo "FSDB waveform generated. View with: verdi -ssf <filename>.fsdb &"
+%.vcd: %.vvp
+	vvp $<
 
 #%.elf: %.c $(FIRMWARE_PATH)/sections.lds $(FIRMWARE_PATH)/start.s
 #	${GCC_PATH}/${GCC_PREFIX}-gcc -march=$(RISCV_TYPE) -mabi=ilp32 -Wl,-Bstatic,-T,$(FIRMWARE_PATH)/sections.lds,--strip-debug -ffreestanding -nostdlib -o $@ $(FIRMWARE_PATH)/start.s $<
@@ -103,15 +78,12 @@ ifeq (,$(wildcard $(GCC_PATH)/$(GCC_PREFIX)-gcc ))
 endif
 # check for efabless style installation
 ifeq (,$(wildcard $(PDK_ROOT)/$(PDK)/libs.ref/*/verilog))
-#SIM_DEFINES := ${SIM_DEFINES} +define+EF_STYLE
+#SIM_DEFINES := ${SIM_DEFINES} -DEF_STYLE
 endif
-
 # ---- Clean ----
 
 clean:
-	rm -f $(SIMV) *.log *.vpd *.fsdb *.key
-	rm -rf simv.daidir csrc DVEfiles verdiLog novas.* *.fsdb+
-	rm -rf AN.DB
+	rm -f *.vcd *.log *.vvp
 
-.PHONY: clean compile sim gui vpd fsdb all check-env
+.PHONY: clean vvp vcd
 

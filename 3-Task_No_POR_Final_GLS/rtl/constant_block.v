@@ -21,6 +21,8 @@
  *---------------------------------------------------------------------
  */
 
+//`include "/home/madank/work/vsdRiscvScl180/rtl/dummy_scl180_conb_1.v" // comment this for RTL. uncomment for GLS
+
 module constant_block (
     `ifdef USE_POWER_PINS
          inout vccd,

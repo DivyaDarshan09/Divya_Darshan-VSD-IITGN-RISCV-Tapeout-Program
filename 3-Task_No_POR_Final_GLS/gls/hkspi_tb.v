@@ -21,11 +21,11 @@
 `timescale 1 ns / 1 ps
 
 `define USE_POWER_PINS
-`include "defines.v"
+`include "/home/ddarshan/vsdRiscvScl180/gl/defines.v"
 //`include "__uprj_netlists.v"
-`include "caravel_netlists.v"
-`include "spiflash.v"
-`include "tbuart.v"
+`include "/home/ddarshan/vsdRiscvScl180/gl/caravel_netlists.v"
+`include "/home/ddarshan/vsdRiscvScl180/gls/spiflash.v"
+`include "/home/ddarshan/vsdRiscvScl180/gls/tbuart.v"
 
 module hkspi_tb;
 	reg clock;
@@ -87,6 +87,7 @@ module hkspi_tb;
 
 	task write_byte;
 	    input [7:0] odata;
+		integer i;
 	    begin
 		SCK <= 1'b0;
 		for (i=7; i >= 0; i--) begin
@@ -102,6 +103,7 @@ module hkspi_tb;
 
 	task read_byte;
 	    output [7:0] idata;
+		integer i;
 	    begin
 		SCK <= 1'b0;
 		SDI <= 1'b0;
@@ -119,6 +121,7 @@ module hkspi_tb;
 	task read_write_byte
 	    (input [7:0] odata,
 	    output [7:0] idata);
+		integer i;
 	    begin
 		SCK <= 1'b0;
 		for (i=7; i >= 0; i--) begin

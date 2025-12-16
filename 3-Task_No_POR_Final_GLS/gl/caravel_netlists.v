@@ -20,7 +20,7 @@
 
 `ifdef SIM
 
-     `include "defines.v"
+     `include "/home/ddarshan/vsdRiscvScl180/gl/defines.v"
     //`include "user_defines.v"
     //`include "pads.v"
 
@@ -28,12 +28,36 @@
 	`default_nettype wire
     `ifdef GL
 	`include "tsl18fs120_scl.v"
-        `include "pc3d21.v"
-        `include "pc3d01.v"
-        `include "pt3b02.v"
+        //`include "pc3d21.v"
+        //`include "pc3d01.v"
+        //`include "pt3b02.v"//ddarshan
 
-	`include "pc3b03ed.v"
+	//`include "pc3b03ed.v"
 	//`include "RAM128.v"
+	//madank
+	//`include "/home/ddarshan/vsdRiscvScl180/rtl/dummy_scl180_conb_1.v"
+	`include "/home/ddarshan/vsdRiscvScl180/rtl/dummy_scl180_conb_1.v"
+	`include "/home/ddarshan/vsdRiscvScl180/rtl/constant_block.v"
+	`include "/home/ddarshan/vsdRiscvScl180/rtl/scl180_wrapper/pc3d01_wrapper.v"
+	`include "/home/ddarshan/vsdRiscvScl180/rtl/scl180_wrapper/pc3b03ed_wrapper.v"
+	//`include "/home/ddarshan/vsdRiscvScl180/rtl/VexRiscv_MinDebugCache.v"
+	//`include "/home/ddarshan/vsdRiscvScl180/rtl/mprj_io.v"
+	`include "/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/6M1L/verilog/tsl18cio250/zero/pc3d21.v"
+	//
+
+	//madank
+	//`include "/home/ddarshan/vsdRiscvScl180/gl/housekeeping.v"//
+	//`include "RAM128.v"
+	//`include "dummy_por.v"
+	`include "/home/ddarshan/vsdRiscvScl180/rtl/scl180_wrapper/pt3b02_wrapper.v"
+
+
+	//madank
+	//`include "/home/ddarshan/vsdRiscvScl180/gl/dummy_schmittbuf.v"
+	//`include "/home/ddarshan/vsdRiscvScl180/gl/dummy_por.v"
+	`include "/home/ddarshan/vsdRiscvScl180/gl/RAM128.v"
+	`include "/home/ddarshan/vsdRiscvScl180/rtl/RAM256.v"
+	//
 	`include "vsdcaravel_synthesis.v"
 	//`include "VexRiscv_MinDebugCache.v"
 	//`include "digital_pll.v"

@@ -1,4 +1,4 @@
-174      
+173      
 0 __uprj_netlists.v
 0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/__uprj_netlists.v
 0 ../__uprj_netlists.v
@@ -14,6 +14,11 @@
 0 caravel_netlists.v
 0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/caravel_netlists.v
 0 ../caravel_netlists.v
+0 /defines.v
+0 /defines.v.e
+0 ./defines.v
+0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/./defines.v
+0 .././defines.v
 0 user_defines.v
 0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/user_defines.v
 0 ../user_defines.v
@@ -23,26 +28,26 @@
 0 pc3b03ed_wrapper.v
 0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/pc3b03ed_wrapper.v
 0 ../pc3b03ed_wrapper.v
-0 ../..//rtl/pc3b03ed_wrapper.v
+0 ../../rtl/pc3b03ed_wrapper.v
 0 pc3b03ed.v
 0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/pc3b03ed.v
 0 ../pc3b03ed.v
-0 ../..//rtl/pc3b03ed.v
-0 ../..//rtl/scl180_wrapper/pc3b03ed.v
+0 ../../rtl/pc3b03ed.v
+0 ../../rtl/scl180_wrapper/pc3b03ed.v
 0 pc3d21.v
 0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/pc3d21.v
 0 ../pc3d21.v
-0 ../..//rtl/pc3d21.v
-0 ../..//rtl/scl180_wrapper/pc3d21.v
+0 ../../rtl/pc3d21.v
+0 ../../rtl/scl180_wrapper/pc3d21.v
 0 pc3d01_wrapper.v
 0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/pc3d01_wrapper.v
 0 ../pc3d01_wrapper.v
-0 ../..//rtl/pc3d01_wrapper.v
+0 ../../rtl/pc3d01_wrapper.v
 0 pc3d01.v
 0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/pc3d01.v
 0 ../pc3d01.v
-0 ../..//rtl/pc3d01.v
-0 ../..//rtl/scl180_wrapper/pc3d01.v
+0 ../../rtl/pc3d01.v
+0 ../../rtl/scl180_wrapper/pc3d01.v
 0 pt3b02_wrapper.v
 0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/pt3b02_wrapper.v
 0 ../pt3b02_wrapper.v
@@ -76,8 +81,8 @@
 0 pt3b02.v
 0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/pt3b02.v
 0 ../pt3b02.v
-0 ../..//rtl/pt3b02.v
-0 ../..//rtl/scl180_wrapper/pt3b02.v
+0 ../../rtl/pt3b02.v
+0 ../../rtl/scl180_wrapper/pt3b02.v
 0 housekeeping_spi.v
 0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/housekeeping_spi.v
 0 ../housekeeping_spi.v
@@ -165,25 +170,17 @@
 0 empty_macro.v
 0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/empty_macro.v
 0 ../empty_macro.v
-0 dummy_por.v
-0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/dummy_por.v
-0 ../dummy_por.v
-0 dummy_schmittbuf.v
-0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/dummy_schmittbuf.v
-0 ../dummy_schmittbuf.v
 0 spiflash.v
 0 /home/Synopsys/tools/vcs/U-2023.03/etc/systemverilog/spiflash.v
-42
+36
 +define+FUNCTIONAL
 +define+SIM
 +incdir+../
-+incdir+../..//rtl
-+incdir+../..//rtl/scl180_wrapper
++incdir+../../rtl
++incdir+../../rtl/scl180_wrapper
 +incdir+/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/6M1L/verilog/tsl18cio250/zero
-+itf+/home/Synopsys/tools/vcs/U-2023.03/linux64/lib/vcsdp.tab
-+memcbk
-+v2k
-+vcsd
++itf+/home/Synopsys/tools/vcs/U-2023.03/linux64/lib/vcsdp_lite.tab
++vcsd1
 +vpi
 -Mamsrun=
 -Masflags=
@@ -202,31 +199,25 @@
 -Mvcsaceobjs=
 -Mxcflags= -pipe -fPIC -I/home/Synopsys/tools/vcs/U-2023.03/include
 -Mxllcflags=
--debug_access+all+bc
--debug_region+cell
+-debug_access+all
 -full64
 -gen_obj
--l
--lca
 -o simv
 -picarchive
 -sverilog
 -timescale=1ns/1ps
 /home/Synopsys/tools/vcs/U-2023.03/linux64/bin/vcs1
-compile.log
 simv
 hkspi_tb.v
-93
-XDG_SESSION_ID=1377
-XDG_RUNTIME_DIR=/run/user/1003
-XDG_DATA_DIRS=/home/ddarshan/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+88
+XDG_SESSION_ID=806
+XDG_RUNTIME_DIR=/run/user/1002
+XDG_DATA_DIRS=/home/madank/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
 VMR_MODE_FLAG=64
 VENDOR=unknown
 VCS_PATHMAP_PRELOAD_DONE=1
 VCS_MX_HOME_INTERNAL=1
 VCS_MODE_FLAG=64
-VCS_LOG_FILE=compile.log
-VCS_LCAMSG_PRINT_OFF=1
 VCS_HOME=/home/Synopsys/tools/vcs/U-2023.03
 VCS_EXEC_DONE=1
 VCS_DEPTH=0
@@ -237,9 +228,9 @@ TOOL_HOME=/home/Synopsys/tools/vcs/U-2023.03/linux64
 SYN_HOME=/home/Synopsys/tools/syn/T-2022.03-SP5
 SYNOPSYS_HOME=/home/Synopsys/tools
 STARRC_HOME=/home/Synopsys/tools/starrc/U-2022.12-SP3
-SSH_TTY=/dev/pts/8
-SSH_CONNECTION=10.0.178.47 60759 10.0.117.98 22
-SSH_CLIENT=10.0.178.47 60759 22
+SSH_TTY=/dev/pts/1
+SSH_CONNECTION=10.0.178.48 54237 10.0.117.155 22
+SSH_CLIENT=10.0.178.48 54237 22
 SNPS_VCS_CLANG_PATH=/home/Synopsys/tools/vcs/U-2023.03/linux64/clang
 SNPS_TEMP=tmp
 SNPS_INTERNAL_VCS_LINUX_OS=linux
@@ -253,7 +244,7 @@ RSS_USERWARE=/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/pdk/cdns/sclpdk
 RSS_MODEL_LIB=/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/pdk/cdns/sclpdk_v3/HOTCODE/mgclibs
 RFCAD_CDS=/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/pdk/cdns/sclpdk_v3/HOTCODE
 RFCAD_ADS=/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/pdk/cdns/sclpdk_v3/HOTCODE
-REMOTEHOST=10.0.178.47
+REMOTEHOST=10.0.178.48
 RDS_TECH=/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/pdk/cdns/sclpdk_v3/HOTCODE/techs
 RDS_ROOT_DEFAULT=/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/pdk/cdns/sclpdk_v3/HOTCODE
 RDS_ROOT=/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/pdk/cdns/sclpdk_v3/HOTCODE
@@ -290,16 +281,13 @@ OVA_UUM=0
 OSTYPE=linux
 OA_UNSUPPORTED_PLAT=linux_rhel50_gcc44x
 MGC_CALIBRE_CUSTOMIZATION_FILE=/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/pdk/cdns/sclpdk_v3/HOTCODE/techs/generic/calibre/calibre_ts_drc.custom
-MFLAGS=
-MAKELEVEL=1
-MAKEFLAGS=
 LESSOPEN=||/usr/bin/lesspipe.sh %s
 LC_ALL=C
 KIT_DIR=/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/pdk/cdns/sclpdk_v3
 ICC2_HOME=/home/Synopsys/tools/icc2/U-2022.12-SP3
 HOSTTYPE=x86_64-linux
 HISTCONTROL=ignoredups
-GROUP=ddarshan
+GROUP=madank
 FLEXLM_DIAGNOSTICS=3
 CWB_GL1_YES=1
 CLS_CDSD_COMPATIBILITY_LOCKING=No
@@ -312,71 +300,70 @@ ASIC_LIB=/home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/pdk/cdns/sclpdk_v3/
 ALTOS_QUEUE=1
 0
 0
-60
-1765877235 /home/ddarshan/vsdRiscvScl180/dv/tbuart.v
-1765877235 ../spiflash.v
-1765878106 ../..//rtl/dummy_schmittbuf.v
-1765877235 ../..//rtl/dummy_por.v
-1765877235 ../..//rtl/empty_macro.v
-1765877235 ../..//rtl/manual_power_connections.v
-1765877235 ../..//rtl/mprj_io_buffer.v
-1765877235 ../..//rtl/caravel_core.v
-1765877235 ../..//rtl/user_id_textblock.v
-1765877235 ../..//rtl/open_source.v
-1765877235 ../..//rtl/caravel_motto.v
-1765877235 ../..//rtl/caravel_logo.v
-1765877235 ../..//rtl/copyright_block.v
-1765877235 ../..//rtl/vsdcaravel.v
-1765877235 ../..//rtl/VexRiscv_MinDebugCache.v
-1765877235 ../..//rtl/RAM128.v
-1765877235 ../..//rtl/RAM256.v
-1765877235 ../..//rtl/mgmt_core.v
-1765877235 ../..//rtl/mgmt_core_wrapper.v
-1765877235 ../..//rtl/spare_logic_block.v
-1765877235 ../..//rtl/xres_buf.v
-1765877235 ../..//rtl/gpio_logic_high.v
-1765877235 ../..//rtl/gpio_signal_buffering.v
-1765877235 ../..//rtl/gpio_defaults_block.v
-1765877235 ../..//rtl/scl180_macro_sparecell.v
-1765877235 ../..//rtl/gpio_control_block.v
-1765877235 ../..//rtl/constant_block.v
-1765877235 ../..//rtl/mgmt_protect_hv.v
-1765877235 ../..//rtl/mgmt_protect.v
-1765877235 ../..//rtl/mprj2_logic_high.v
-1765877235 ../..//rtl/mprj_logic_high.v
-1765877235 ../..//rtl/housekeeping.v
-1765877235 ../..//rtl/housekeeping_spi.v
-1765373558 /home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/6M1L/verilog/tsl18cio250/zero/pt3b02.v
-1765877235 /home/ddarshan/vsdRiscvScl180/rtl/scl180_wrapper/pt3b02_wrapper.v
-1765877891 ../..//rtl/chip_io.v
-1765877235 ../..//rtl/mprj_io.v
-1765877235 ../..//rtl/clock_div.v
-1765877235 ../..//rtl/user_id_programming.v
-1765877235 ../..//rtl/caravel_clocking.v
-1765877235 ../..//rtl/dummy_scl180_conb_1.v
-1765373546 /home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/stdcell/fs120/6M1L/verilog/vcs_sim_model/tsl18fs120_scl.v
-1765877235 ../..//rtl/ring_osc2x13.v
-1765877235 ../..//rtl/digital_pll_controller.v
-1765877235 ../..//rtl/digital_pll.v
-1765877235 ../..//rtl/pt3b02_wrapper.v
-1765373558 /home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/6M1L/verilog/tsl18cio250/zero/pc3d01.v
-1765877235 ../..//rtl/scl180_wrapper/pc3d01_wrapper.v
-1765373558 /home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/6M1L/verilog/tsl18cio250/zero/pc3d21.v
-1765373558 /home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/6M1L/verilog/tsl18cio250/zero/pc3b03ed.v
-1765877235 ../..//rtl/scl180_wrapper/pc3b03ed_wrapper.v
-1765877235 ../..//rtl/pads.v
-1765877235 ../..//rtl/user_defines.v
-1765877235 ../..//rtl/caravel_netlists.v
-1765877235 ../..//rtl/debug_regs.v
-1765877235 ../..//rtl/__user_project_wrapper.v
-1765877235 ../..//rtl/defines.v
-1765877235 ../..//rtl/__uprj_netlists.v
-1765878485 hkspi_tb.v
-1765371508 /home/Synopsys/tools/vcs/U-2023.03/linux64/lib/vcsdp.tab
+59
+1765808527 /home/madank/work/vsdRiscvScl180/dv/tbuart.v
+1765808527 ../spiflash.v
+1765808527 ../../rtl/empty_macro.v
+1765808527 ../../rtl/manual_power_connections.v
+1765808527 ../../rtl/mprj_io_buffer.v
+1765809140 ../../rtl/caravel_core.v
+1765808527 ../../rtl/user_id_textblock.v
+1765808527 ../../rtl/open_source.v
+1765808527 ../../rtl/caravel_motto.v
+1765808527 ../../rtl/caravel_logo.v
+1765808527 ../../rtl/copyright_block.v
+1765809293 ../../rtl/vsdcaravel.v
+1765808527 ../../rtl/VexRiscv_MinDebugCache.v
+1765808527 ../../rtl/RAM128.v
+1765808527 ../../rtl/RAM256.v
+1765808527 ../../rtl/mgmt_core.v
+1765808527 ../../rtl/mgmt_core_wrapper.v
+1765808527 ../../rtl/spare_logic_block.v
+1765808527 ../../rtl/xres_buf.v
+1765808527 ../../rtl/gpio_logic_high.v
+1765808527 ../../rtl/gpio_signal_buffering.v
+1765808527 ../../rtl/gpio_defaults_block.v
+1765808527 ../../rtl/scl180_macro_sparecell.v
+1765808527 ../../rtl/gpio_control_block.v
+1765808527 ../../rtl/constant_block.v
+1765808527 ../../rtl/mgmt_protect_hv.v
+1765808527 ../../rtl/mgmt_protect.v
+1765808527 ../../rtl/mprj2_logic_high.v
+1765808527 ../../rtl/mprj_logic_high.v
+1765808527 ../../rtl/housekeeping.v
+1765808527 ../../rtl/housekeeping_spi.v
+1765385397 /home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/6M1L/verilog/tsl18cio250/zero/pt3b02.v
+1765808527 /home/madank/work/vsdRiscvScl180/rtl/scl180_wrapper/pt3b02_wrapper.v
+1765808527 ../../rtl/chip_io.v
+1765808527 ../../rtl/mprj_io.v
+1765808527 ../../rtl/clock_div.v
+1765808527 ../../rtl/user_id_programming.v
+1765808527 ../../rtl/caravel_clocking.v
+1765808527 ../../rtl/dummy_scl180_conb_1.v
+1765385680 /home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/stdcell/fs120/6M1L/verilog/vcs_sim_model/tsl18fs120_scl.v
+1765808527 ../../rtl/ring_osc2x13.v
+1765808527 ../../rtl/digital_pll_controller.v
+1765808527 ../../rtl/digital_pll.v
+1765808527 ../../rtl/pt3b02_wrapper.v
+1765385396 /home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/6M1L/verilog/tsl18cio250/zero/pc3d01.v
+1765808527 ../../rtl/scl180_wrapper/pc3d01_wrapper.v
+1765385396 /home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/6M1L/verilog/tsl18cio250/zero/pc3d21.v
+1765385397 /home/Synopsys/pdk/SCL_PDK_3/SCLPDK_V3.0_KIT/scl180/iopad/cio250/6M1L/verilog/tsl18cio250/zero/pc3b03ed.v
+1765808527 ../../rtl/scl180_wrapper/pc3b03ed_wrapper.v
+1765808527 ../../rtl/pads.v
+1765808527 ../../rtl/user_defines.v
+1765808527 ../../rtl/./defines.v
+1765809731 ../../rtl/caravel_netlists.v
+1765808527 ../../rtl/debug_regs.v
+1765808527 ../../rtl/__user_project_wrapper.v
+1765808527 ../../rtl/defines.v
+1765808527 ../../rtl/__uprj_netlists.v
+1765808527 hkspi_tb.v
+1677384340 /home/Synopsys/tools/vcs/U-2023.03/linux64/lib/vcsdp_lite.tab
 4
-1765371496 /home/Synopsys/tools/vcs/U-2023.03/linux64/lib/libvirsim.so
-1765371483 /home/Synopsys/tools/vcs/U-2023.03/linux64/lib/liberrorinf.so
-1765371517 /home/Synopsys/tools/vcs/U-2023.03/linux64/lib/libsnpsmalloc.so
-1765371483 /home/Synopsys/tools/vcs/U-2023.03/linux64/lib/libvfs.so
-1765878498 simv.daidir
+1677385575 /home/Synopsys/tools/vcs/U-2023.03/linux64/lib/libvirsim.so
+1677385060 /home/Synopsys/tools/vcs/U-2023.03/linux64/lib/liberrorinf.so
+1677385018 /home/Synopsys/tools/vcs/U-2023.03/linux64/lib/libsnpsmalloc.so
+1677385055 /home/Synopsys/tools/vcs/U-2023.03/linux64/lib/libvfs.so
+1765809743 simv.daidir
 -1 partitionlib
