@@ -1,1 +1,34 @@
+****************************************
+    DIVYA DARSHAN - NO POR
+****************************************
+
+****************************************
+Report : area
+Design : vsdcaravel
+Version: T-2022.03-SP5
+Date   : Tue Dec 16 15:23:41 2025
+****************************************
+
+Library(s) Used: SCL
+
+
+Number of ports:                        12749
+Number of nets:                         37554
+Number of cells:                        30961
+Number of combinational cells:          18422
+Number of sequential cells:              6882
+Number of macros/black boxes:              16
+Number of buf/inv:                       3532
+Number of references:                       2
+
+Combinational area:             341951.960055
+Buf/Inv area:                    28798.119889
+Noncombinational area:          431036.399128
+Macro/Black Box area:              100.320000
+Net Interconnect area:           32791.102344
+
+Total cell area:                773088.679183
+Total area:                     805879.781527
+
+Information: This design contains black box (unknown) components. (RPT-8)
 
