@@ -73,7 +73,7 @@ always @(posedge clk or negedge porb)
 | Level shifters          | External         | Integrated      |
 | Pad power-up dependency | Yes              | No              |
 | Mandatory POR           | Yes              | No              |
-| Conclusion              | -                | -               |
+
 ```
 ---
 ## Conclusion
