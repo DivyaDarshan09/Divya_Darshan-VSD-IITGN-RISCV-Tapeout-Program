@@ -92,7 +92,7 @@ assign rstb_h = resetb;
     - Matches SCL-180 pad capabilities
     - Aligns with ASIC reset best practices
 
-```bash
+```
     While analog POR remains a valid silicon concept, modeling it behaviorally in RTL is unnecessary when reset is explicitly provided and externally controlled.
 ```
 
