@@ -57,8 +57,8 @@ module caravel_core (
 `endif
 
     // SoC Core Interface
-    inout porb_h,
-    inout porb_l,
+    output porb_h,
+    output por_l,
     inout  rstb_h,
     input  clock_core,
     output gpio_out_core,
@@ -1379,7 +1379,6 @@ module caravel_core (
     );
 
     // Power-on-reset circuit
-/*
     dummy_por por (
 	`ifdef USE_POWER_PINS
 		.vdd3v3(vddio),
@@ -1391,7 +1390,6 @@ module caravel_core (
 		.porb_l(porb_l),
 		.por_l(por_l)
     );
-*/
 
     // XRES (chip input pin reset) reset level converter
     xres_buf rstb_level (
