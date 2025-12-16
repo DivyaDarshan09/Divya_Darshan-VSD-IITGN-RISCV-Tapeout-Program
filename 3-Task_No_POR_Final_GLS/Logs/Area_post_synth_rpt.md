@@ -1,5 +1,10 @@
 # AREA REPORT
 
+**NOTE:**
+
+As this design uses the SCL-180 standard-cell and I/O pad libraries, some technology-specific implementation details are intentionally abstracted and omitted from the RTL description.
+
+
 ```
 ****************************************
             AREA REPORT
