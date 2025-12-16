@@ -1,9 +1,17 @@
 # POWER REPORT
 
+**NOTE**
+As this design uses the SCL-180 standard-cell and I/O pad libraries, some technology-specific implementation details are intentionally abstracted and omitted from the RTL description.
+
 ```
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
 
- 
+****************************************
+            AREA REPORT
+****************************************
+****************************************
+        DIVYA DARSHAN - NO POR
+****************************************
 ****************************************
 Report : power
         -analysis_effort low
