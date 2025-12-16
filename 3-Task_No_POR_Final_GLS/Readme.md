@@ -6,5 +6,14 @@
   - No internal POR circuitry is required.
   - All reset behavior is explicit and externally controlled.
   - The resulting design remains functionally correct and synthesizable.
+  
+--  
+**Technology Note**
+
+- This design targets the SCL-180 standard-cell and I/O library.
+- As a result, SKY130-specific POR assumptions and pad behavior are removed.
+- All reset decisions and documentation are written from an SCL-180 perspective.
+---
+## Phase-1: Study of Existing POR Usage
 
  
