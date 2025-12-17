@@ -73,7 +73,7 @@ cd dv/hkspi/
 - The Synopsys environment is initialized before invoking VCS.
 ```bash
 csh
-source /home/madank/toolRC_iitgntapeout
+source /home/ddarhan/toolRC_iitgntapeout
 ```
 - The following command compiles the RTL and testbench and creates the simulation executable.
   
