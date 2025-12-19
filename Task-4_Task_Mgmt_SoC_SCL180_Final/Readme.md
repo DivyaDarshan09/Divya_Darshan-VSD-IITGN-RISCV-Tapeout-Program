@@ -1,11 +1,13 @@
 # 🚀 Task-4: Management SoC DV Validation on SCL-180  
 ## POR-Free Architecture Verification
 
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
-![PDK](https://img.shields.io/badge/PDK-SCL--180-blue)
-![Tools](https://img.shields.io/badge/Tools-VCS%20%7C%20DC__TOPO-orange)
-![Reset](https://img.shields.io/badge/Reset-POR--Free-critical)
-![DV](https://img.shields.io/badge/DV-hkspi%20PASS-yellowgreen)
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-In%20Progress-yellow"/>
+  <img src="https://img.shields.io/badge/PDK-SCL--180-blue"/>
+  <img src="https://img.shields.io/badge/Tools-VCS%20%7C%20DC__TOPO-orange"/>
+  <img src="https://img.shields.io/badge/DV-Test%20Failed-red"/>
+  <img src="https://img.shields.io/badge/GLS-RTL%20%7C%20Synth%20SRAM%20Done-yellowgreen"/>
+</p>
 
 ---
 
@@ -42,8 +44,7 @@ These tests rely on:
 They **do not depend on internal POR logic**.  
 Running them on a **POR-free RTL** synthesized for **SCL-180** provides industry-grade confidence in reset correctness.
 
-DV reference:
-https://github.com/efabless/caravel/tree/main/verilog/dv/caravel/mgmt_soc
+**DV reference:** https://github.com/efabless/caravel/tree/main/verilog/dv/caravel/mgmt_soc
 
 ---
 
@@ -72,8 +73,8 @@ mprj_ctrl | ❌ FAIL |
 storage | ❌ FAIL |
 irq | ❌ FAIL |
 
-> As instructed, **only `hkspi` DV was completed successfully**.  
-> All other failures are documented transparently.
+As instructed, **only `hkspi` DV was completed successfully**.  
+All other failures are documented transparently.
 
 ---
 
@@ -88,13 +89,57 @@ irq | ❌ FAIL |
 
 This confirms a **clean external reset architecture**.
 
+### Proof of DV Test
+
+### TEST-1: HKSPI
+
+**RTL SIMULATION**
+**STATUS** : PASSED ✅
+
+![rtl](.Screenshots/hkspi_rtl.jpeg)
+
+*GLSL SIMULATION**
+**STATUS** : PASSED ✅
+
+![rtl](.Screenshots/hkspi_gls.jpeg)
+
+---
+
+### TEST-2: GPIO
+
+**RTL SIMULATION**
+**STATUS** : FAILED ❌
+
+![rtl](.Screenshots/gpio_rtl.jpeg)
+
+---
+
+### TEST-3: IRQ
+
+**RTL SIMULATION**
+**STATUS** : FAILED ❌
+
+![rtl](.Screenshots/irq_rtl.jpeg)
+
+### TEST-4: STORAGE
+
+**RTL SIMULATION**
+**STATUS** : FAILED ❌
+
+![rtl](.Screenshots/storage_rtl.jpeg)
+
+### TEST-5: MPRJ_CONTROL
+**RTL SIMULATION**
+**STATUS** : FAILED ❌
+
+![rtl](.Screenshots/mprj_rtl.jpeg)
 ---
 
 ## 🧪 Phase-2: DC_TOPO Synthesis (Baseline)
 
 ### Synthesis Strategy
 
-- Full Management SoC synthesized using **DC_TOPO**
+- Full Management SoC synthesized using **DC_TOPO** (we will be using DC_Shell for synthesis since DC_Topo involves physical awareness)
 - SRAM modules (`RAM128`, `RAM256`) initially treated as **black-boxed RTL**
 - Logic mapped to **SCL-180 standard cells**
 
@@ -103,9 +148,9 @@ This confirms a **clean external reset architecture**.
 netlist_rtl_sram/
 ├── vsdcaravel_synthesis.v
 ├── vsdcaravel_synthesis.sdc
-├── vsdcaravel_synthesis.ddc    
-### Reports Generated
+├── vsdcaravel_synthesis.ddc  
 
+### Reports Generated
 - Area
 - Timing
 - Power
@@ -138,19 +183,18 @@ Reset | External (`resetb`) |
   - RTL simulation
   - GLS with RTL SRAM
 
-### Deliverables
+![rtl](.Screenshots/bb.jpeg)
 
+![rtl](.Screenshots/sram_rtl_gl.jpeg)
 
 ---
-
-## 🧪 Phase-4: SRAM Synthesis / Abstraction
+## 🧪 Phase-4: SRAM Synthesis
 
 ### Context
 
-Caravel SRAMs are originally **RTL modules**, not hard macros.  
-To strengthen validation, SRAMs were **abstracted / synthesized via DC_TOPO** and included as gate-level representations in GLS.
-
-This provides higher confidence than pure RTL SRAM while remaining within available tooling.
+- Caravel SRAMs are originally **RTL modules**, not hard macros.  
+- To strengthen validation, SRAMs were **synthesized via DC_shell** and included as gate-level representations in GLS.
+- This provides higher confidence than pure RTL SRAM while remaining within available tooling.
 
 ---
 
@@ -167,10 +211,7 @@ IO Pads | SCL-180 functional models |
 Reset | External (`resetb`) |
 
 ### DV Executed
-
-- **hkspi**
-
-### Results
+#### hkspi Results
 
 - ✅ GLS completed successfully
 - ✅ Identical behavior observed across:
@@ -181,31 +222,13 @@ Reset | External (`resetb`) |
 - ✅ No reset-related failures
 - ✅ No memory corruption during SPI accesses
 
-### Deliverables
+**Synthesized SRAM Models**
 
+![rtl](.Screenshots/synth_sram.jpeg)
 
----
+**GLS OUTPUT**
 
-## ❌ DV Failures (Documented)
-
-The following DV tests failed in the POR-free SCL-180 environment:
-
-| Test | Observation |
-|----|-------------|
-gpio | Reset sequencing assumptions |
-mprj_ctrl | Control register init dependency |
-storage | SRAM init ordering assumptions |
-irq | IRQ state ambiguity |
-
-### Key Insight
-
-Failures appear to stem from **DV assumptions** rather than RTL functional defects, including:
-
-- Implicit POR-like initialization
-- Sky130-specific behavior assumptions
-- Power-up ordering expectations
-
-All failures are logged and preserved for traceability.
+![rtl](.Screenshots/sram_synth_gl.jpeg)
 
 ---
 
@@ -233,13 +256,21 @@ Status | Executed | Executed |
 - ✅ POR-free Management SoC RTL is functionally correct
 - ✅ Logic synthesis correctness verified
 - ✅ hkspi DV validated across all abstraction levels
-- ❌ Some DV tests rely on POR-like assumptions
+- ❌ Some DV tests failing
 - 🟢 SRAM integration shown to be robust
 
 This task provides a **sign-off-grade validation baseline** for a POR-free Management SoC on SCL-180.
 
 ---
 
-## 🗣 One-Line Summary
+## 🗣 Summary
 
-> Management SoC hkspi DV was validated across RTL, GLS with RTL SRAM, and GLS with synthesized SRAM on SCL-180, confirming correctness of a POR-free reset architecture.
+Management SoC hkspi DV was validated across RTL, GLS with RTL SRAM, and GLS with synthesized SRAM on SCL-180, confirming correctness of a POR-free reset architecture.
+
+---
+## Author
+
+**Divya Darshan VR**  
+This work is part of the **India RISC-V SoC Tapeout Program – Phase 2 by VLSI System Design & IIT Gandhinagar**.
+
+---
