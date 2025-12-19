@@ -1,6 +1,7 @@
 # 🚀 Task-4: Management SoC DV Validation on SCL-180  
-## POR-Free Architecture Verification
-
+<p align="center">
+<strong>POR-Free Architecture Verification</strong>
+</p>
 <p align="center">
   <img src="https://img.shields.io/badge/Status-In%20Progress-yellow"/>
   <img src="https://img.shields.io/badge/PDK-SCL--180-blue"/>
