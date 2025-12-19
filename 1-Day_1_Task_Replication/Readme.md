@@ -157,7 +157,9 @@ Read register 18 = 0x04 (should be 0x04)
 Monitor: Test HK SPI (RTL) Passed
 ```
 
-![rtl](.Screenshots/rtl.jpg)
+![rtl](.Screenshots/rtl_1.jpeg)
+
+![rtl](.Screenshots/rtl_2.jpeg)
 
 - From the terminal output :
 - hkspi.hex successfully loaded into SoC memory.
@@ -172,7 +174,7 @@ Monitor: Test HK SPI (RTL) Passed
 gtkwave hkspi.vcd hkspi_tb.v
 ```
 
-![rtl](.Screenshots/rtl_waveform.jpg)
+![rtl](.Screenshots/rtl_waveform.jpeg)
 
 
 ### Observations
@@ -399,7 +401,7 @@ dc_shell -f ../synth.tcl
 
 **Terminal Screenshot**
 
-![synth](.Screenshots/synth.jpg)
+![synth](.Screenshots/synth.jpeg)
 
 **✅ Outcome**
 
@@ -427,6 +429,63 @@ Gate-Level Simulation validates that the **synthesized netlist preserves RTL fun
 ```bash
 gls/
 ```
+--- 
+
+### GLS Execution
+
+```bash
+make clean
+make
+vvp hkspi.vvp
+```
+
+**Example Output**
+
+```
+Read data = 0x11 (should be 0x11)
+
+Read register 0  = 0x00 (should be 0x00)
+Read register 1  = 0x04 (should be 0x04)
+Read register 2  = 0x56 (should be 0x56)
+Read register 3  = 0x11 (should be 0x11)
+Read register 4  = 0x00 (should be 0x00)
+Read register 5  = 0x00 (should be 0x00)
+Read register 6  = 0x00 (should be 0x00)
+Read register 7  = 0x00 (should be 0x00)
+Read register 8  = 0x02 (should be 0x02)
+Read register 9  = 0x01 (should be 0x01)
+Read register 10 = 0x00 (should be 0x00)
+Read register 11 = 0x00 (should be 0x00)
+Read register 12 = 0x00 (should be 0x00)
+Read register 13 = 0xff (should be 0xff)
+Read register 14 = 0xef (should be 0xef)
+Read register 15 = 0xff (should be 0xff)
+Read register 16 = 0x03 (should be 0x03)
+Read register 17 = 0x12 (should be 0x12)
+Read register 18 = 0x04 (should be 0x04)
+
+Monitor: Test HK SPI (GL) Passed
+```
+
+
+![gl](.Screenshots/gl.jpeg)
+
+**📌 Conclusion:** HK-SPI Functional (GL) Simulation `PASSED` successfully.
+
+**Visualize the Testbench waveforms for complete design using following command**
+
+```bash
+gtkwave hkspi.vcd hkspi_tb.v
+```
+![gl](.Screenshots/gl_waveform.jpeg)
+
+### Observations
+
+* GLS waveform closely matches RTL waveform
+* No X-propagation on SPI or reset paths
+* hkspi FSM transitions preserved post-synthesis
+
+---
 
 ### RAM128 Module Explanation
 
@@ -456,36 +515,29 @@ Added at the top of the synthesized netlist:
 `include "housekeeping.v"
 ```
 
+**Black boxed RAM128.v**
+
+![bb](.Screenshots/bb1.jpeg)
+
+
+**Black boxed Dummy_por.v**
+
+![bb](.Screenshots/bb2.jpeg)
+
+
+**Black boxed Housekeeping.v**
+
+![bb](.Screenshots/bb3.jpeg)
+
+
 ### Power Pin Correction
 
 In `vsdcaravel.v`:
 
-* Constant `1'b0` connections were replaced with `vssa`
+* Constant `1'b0` connections were replaced with `a`
 * Ensures correct analog ground referencing in GLS
 
-### GLS Execution
-
-```bash
-make clean
-make
-vvp hkspi.vvp
-gtkwave hkspi.vcd hkspi_tb.v
-```
-
-### Observations
-
-* GLS waveform closely matches RTL waveform
-* No X-propagation on SPI or reset paths
-* hkspi FSM transitions preserved post-synthesis
-
----
-
-## 4. System Details
-
-* **Machine:** IIT Gandhinagar Linux Machine
-* **Simulator:** Icarus Verilog / Verilator
-* **PDK:** SCL180
-* **Processor Core:** VexRiscv
+![power](.Screenshots/pwr.jpeg)
 
 ---
 
@@ -494,7 +546,7 @@ gtkwave hkspi.vcd hkspi_tb.v
 | Issue                   | Resolution                           |
 | ----------------------- | ------------------------------------ |
 | Black-box errors in GLS | Manually included RTL models         |
-| Power pin mismatch      | Replaced constant ground with `vssa` |
+| Power pin mismatch      | Replaced constant ground with `a` |
 | Missing IO models       | Corrected SCL IO path in Makefile    |
 
 ---
@@ -510,13 +562,17 @@ This task successfully demonstrates a **complete SoC bring-up workflow** for the
 The results confirm that the design is **functionally stable, synthesis-consistent, and ready for further physical design stages**.
 
 ---
+## System Details
 
+* **Machine:** IIT Gandhinagar Linux Machine
+* **Simulator:** Icarus Verilog
+* **PDK:** SCL180
+---
 ## Acknowledgement
 
 I sincerely thank **Kunal Ghosh Sir**, **IIT Gandhinagar**, and the **VSD Team** for providing the opportunity and technical framework to work on an industry-grade RISC-V SoC using the SCL180 open PDK.
 
-
-
+---
 
 > **Reference Repository:**
 > [https://github.com/vsdip/vsdRiscvScl180/tree/iitgn](https://github.com/vsdip/vsdRiscvScl180/tree/iitgn)
