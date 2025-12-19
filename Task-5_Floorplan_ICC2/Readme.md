@@ -1,5 +1,14 @@
 # 🚀 Task 5: SoC Floorplanning Using ICC2 (Floorplan Only)
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Floorplan-Completed-brightgreen"/>
+  <img src="https://img.shields.io/badge/Tool-ICC2-blue"/>
+  <img src="https://img.shields.io/badge/Technology-NDM-orange"/>
+  <img src="https://img.shields.io/badge/Stage-Physical%20Design-yellowgreen"/>
+  <img src="https://img.shields.io/badge/GUI-Verified-success"/>
+</p>
+
+
 ## 1. Objective
 
 The objective of this task is to create a **correct and clean SoC-level floorplan** using **Synopsys IC Compiler II (ICC2)**.  
