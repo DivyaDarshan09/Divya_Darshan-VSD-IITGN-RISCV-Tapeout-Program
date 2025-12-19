@@ -5,7 +5,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Status-In%20Progress-yellow"/>
   <img src="https://img.shields.io/badge/PDK-SCL--180-blue"/>
-  <img src="https://img.shields.io/badge/Tools-VCS%20%7C%20DC__TOPO-orange"/>
+  <img src="https://img.shields.io/badge/Tools-VCS%20%7C%20DC__SHELL-orange"/>
   <img src="https://img.shields.io/badge/DV-Test%20Failed-red"/>
   <img src="https://img.shields.io/badge/GLS-RTL%20%7C%20Synth%20SRAM%20Done-yellowgreen"/>
 </p>
@@ -22,7 +22,6 @@ This task validates that:
 - External reset-only architecture is correct
 - Logic synthesis preserves functionality
 - SRAM integration is robust across abstraction levels
-- No hidden power-up assumptions exist in the RTL
 
 ---
 
@@ -36,14 +35,8 @@ The original Caravel Management SoC DV tests validate:
 - Storage interfaces
 - IRQ behavior
 
-These tests rely on:
-
-- External reset (`resetb`)
-- Proper pad behavior
-- Correct reset distribution
-
-They **do not depend on internal POR logic**.  
-Running them on a **POR-free RTL** synthesized for **SCL-180** provides industry-grade confidence in reset correctness.
+- They **do not depend on internal POR logic**.  
+- Running them on a **POR-free RTL** synthesized for **SCL-180** provides industry-grade confidence in reset correctness.
 
 **DV reference:** https://github.com/efabless/caravel/tree/main/verilog/dv/caravel/mgmt_soc
 
@@ -54,7 +47,7 @@ Running them on a **POR-free RTL** synthesized for **SCL-180** provides industry
 | Category | Tool / Library |
 |-------|----------------|
 Simulation | Synopsys VCS |
-Synthesis | Synopsys DC_TOPO |
+Synthesis | Synopsys DC_SHELL |
 Technology | SCL-180 PDK |
 Std Cells | SCL-180 FS120 |
 IO Pads | SCL-180 CIO250 |
@@ -74,8 +67,8 @@ mprj_ctrl | ❌ FAIL |
 storage | ❌ FAIL |
 irq | ❌ FAIL |
 
-As instructed, **only `hkspi` DV was completed successfully**.  
-All other failures are documented transparently.
+- As instructed, **only `hkspi` DV was completed successfully**.  
+- All other failures are documented transparently.
 
 ---
 
@@ -99,7 +92,7 @@ This confirms a **clean external reset architecture**.
 
 ![rtl](.Screenshots/hkspi_rtl.jpeg)
 
-*GLSL SIMULATION**
+**GLS SIMULATION**
 **STATUS** : PASSED ✅
 
 ![rtl](.Screenshots/hkspi_gls.jpeg)
@@ -122,6 +115,7 @@ This confirms a **clean external reset architecture**.
 
 ![rtl](.Screenshots/irq_rtl.jpeg)
 
+---
 ### TEST-4: STORAGE
 
 **RTL SIMULATION**
@@ -129,28 +123,23 @@ This confirms a **clean external reset architecture**.
 
 ![rtl](.Screenshots/storage_rtl.jpeg)
 
+---
 ### TEST-5: MPRJ_CONTROL
 **RTL SIMULATION**
 **STATUS** : FAILED ❌
 
 ![rtl](.Screenshots/mprj_rtl.jpeg)
+
 ---
 
-## 🧪 Phase-2: DC_TOPO Synthesis (Baseline)
+## 🧪 Phase-2: DC_SHELL Synthesis (Baseline)
 
 ### Synthesis Strategy
 
-- Full Management SoC synthesized using **DC_TOPO** (we will be using DC_Shell for synthesis since DC_Topo involves physical awareness)
+- Full Management SoC synthesized using **DC_SHELL** .
 - SRAM modules (`RAM128`, `RAM256`) initially treated as **black-boxed RTL**
 - Logic mapped to **SCL-180 standard cells**
-
-### Outputs
-
-netlist_rtl_sram/
-├── vsdcaravel_synthesis.v
-├── vsdcaravel_synthesis.sdc
-├── vsdcaravel_synthesis.ddc  
-
+  
 ### Reports Generated
 - Area
 - Timing
@@ -183,8 +172,13 @@ Reset | External (`resetb`) |
 - Identical behavior between:
   - RTL simulation
   - GLS with RTL SRAM
+**Black Boxed SRAM**
+*(So sram will be treated as `RTL` models for `gls`)*
 
 ![rtl](.Screenshots/bb.jpeg)
+
+
+**GLS OUTPUT**
 
 ![rtl](.Screenshots/sram_rtl_gl.jpeg)
 
