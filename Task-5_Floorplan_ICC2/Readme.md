@@ -1,4 +1,4 @@
-# Task 5: SoC Floorplanning Using ICC2 (Floorplan Only)
+# 🚀 Task 5: SoC Floorplanning Using ICC2 (Floorplan Only)
 
 ## 1. Objective
 
@@ -338,10 +338,10 @@ get_cells -hier -filter "is_hard_macro==true"
 
 ## 17. Key Learnings
 
-✔ Floorplanning is about architecture, not optimization
-✔ Physical abstraction (LEF/LIB) defines what can be placed
-✔ Not all RTL blocks are macros
-✔ Correct hierarchy understanding is critical in SoC PD
+- ✔ Floorplanning is about architecture, not optimization
+- ✔ Physical abstraction (LEF/LIB) defines what can be placed
+- ✔ Not all RTL blocks are macros
+- ✔ Correct hierarchy understanding is critical in SoC PD
 
 ---
 
@@ -349,13 +349,26 @@ get_cells -hier -filter "is_hard_macro==true"
 
 A clean and correct SoC floorplan was successfully created using ICC2, meeting all mandatory requirements:
 
-✅Exact die size
-✅Proper core margins
-✅IO accessibility
-✅Correct abstraction handling
+- ✅Exact die size
+- ✅Proper core margins
+- ✅IO accessibility
+- ✅Correct abstraction handling
+---
+## References
 
-**This task establishes a solid foundation for subsequent physical design stages.**
+- Reference Repository: https://github.com/kunalg123/icc2_workshop_collaterals/blob/master/standaloneFlow/top.tcl
 
+---
+## Author
+
+**Divya Darshan VR**  
+This work is part of the **India RISC-V SoC Tapeout Program – Phase 2 by VLSI System Design & IIT Gandhinagar**.
+
+---
+
+<p align="center">
+<strong>This task establishes a solid foundation for subsequent physical design stages.</strong>
+</p>
 
 <p align="center">
 🚀 <strong>The design is now ready for the next stage of physical implementation.</strong> 🚀
