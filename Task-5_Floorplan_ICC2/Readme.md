@@ -283,7 +283,7 @@ Exact pad ordering and pad cells are intentionally not finalized in this task.
 ```
 ---
 
-## 11. Why RAMs Are Not Placed as  (Very Important)
+## 11. Why RAMs Are Not Placed as Macros (Very Important)
 
 **Common PD Rule**
 
