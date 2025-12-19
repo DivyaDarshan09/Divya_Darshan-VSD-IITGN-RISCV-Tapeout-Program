@@ -481,7 +481,7 @@ gtkwave hkspi.vcd hkspi_tb.v
 
 ### Observations
 
-* GLS waveform closely matches RTL waveform
+* GLS waveform matches RTL waveform
 * No X-propagation on SPI or reset paths
 * hkspi FSM transitions preserved post-synthesis
 
@@ -501,13 +501,13 @@ This approach mirrors real tapeout flows where SRAM is replaced by a foundry mac
 
 ### Black-Box Resolution
 
-The following black-box modules were resolved manually:
+- The following black-box modules were resolved manually by removing these verilog files :
 
 * `dummy_por`
 * `RAM128`
 * `housekeeping`
 
-Added at the top of the synthesized netlist:
+- and added at the top of the synthesized netlist:
 
 ```verilog
 `include "dummy_por.v"
