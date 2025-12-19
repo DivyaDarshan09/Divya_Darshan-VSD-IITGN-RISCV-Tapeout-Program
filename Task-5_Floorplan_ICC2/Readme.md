@@ -129,10 +129,11 @@ A margin between die and core is essential for:
 - **Height**: 5.188 mm
 
 ### Unit Conversion
+
 ICC2 works in **microns**:
 
-3.588 mm = 3588 µm
-5.188 mm = 5188 µm
+* 3.588 mm = 3588 µm
+* 5.188 mm = 5188 µm
 
 For the floorplanning script, refer here 👉 [floorplan.tcl](floorplan.tcl.md)
 
