@@ -1,0 +1,36 @@
+# =====================
+# Simulation / EDA junk
+# =====================
+*.log
+*.o
+*.vcd
+*.hex
+*.elf
+*.bin
+
+# VCS
+simv
+simv.*
+csrc/
+*.daidir/
+ucli.key
+vc_hdrs.h
+
+# Synthesis / PnR
+*.mr
+*.syn
+*.pvl
+*.db
+*.sdb
+*.json
+command.log
+
+# Temp / editor
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# OS
+.DS_Store
+Thumbs.db
