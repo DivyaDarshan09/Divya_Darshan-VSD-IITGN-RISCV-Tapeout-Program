@@ -4,104 +4,127 @@
 ############################################################
 # Task 5 – SoC Floorplanning Using ICC2 (Floorplan Only)
 # Author  : Divya Darshan VR (VSD)
-# Design  : vsdcaravel
+# Design  : Raven_Wrapper
 # Tool    : Synopsys ICC2 2022.12
 ############################################################
 
-# ---------------------------------------------------------
-# Basic Setup
-# ---------------------------------------------------------
-set DESIGN_NAME      vsdcaravel
-set DESIGN_LIBRARY   vsdcaravel_fp_lib
+
+puts "RM-info : Running script [info script]\n"
 
 # ---------------------------------------------------------
-# Reference Library (includes technology internally)
+# 1. Common setup
 # ---------------------------------------------------------
-# Using unified NDM library provided with ICC2 workshop
-set REF_LIB \
-"/home/Synopsys/pdk/SCL_PDK_3/work/run1/icc2_workshop_collaterals/standaloneFlow/work/raven_wrapperNangate/lib.ndm"
+source -echo ./icc2_common_setup.tcl
+source -echo ./icc2_dp_setup.tcl
 
 # ---------------------------------------------------------
-# Create ICC2 Design Library
+# 2. Clean old design library (MANDATORY)
 # ---------------------------------------------------------
-if {[file exists $DESIGN_LIBRARY]} {
-    file delete -force $DESIGN_LIBRARY
+if {[file exists ${WORK_DIR}/${DESIGN_LIBRARY}]} {
+    puts "RM-info : Removing old design library"
+    file delete -force ${WORK_DIR}/${DESIGN_LIBRARY}
 }
 
-create_lib $DESIGN_LIBRARY \
-    -ref_libs $REF_LIB
+# ---------------------------------------------------------
+# 3. Create NDM Library (TECH + LEF)
+# ---------------------------------------------------------
+set create_lib_cmd "create_lib ${WORK_DIR}/${DESIGN_LIBRARY}"
+
+if {[file exists [which $TECH_FILE]]} {
+    lappend create_lib_cmd -tech $TECH_FILE
+} elseif {$TECH_LIB != ""} {
+    lappend create_lib_cmd -use_technology_lib $TECH_LIB
+}
+
+lappend create_lib_cmd -ref_libs $REFERENCE_LIBRARY
+
+puts "RM-info : $create_lib_cmd"
+eval $create_lib_cmd
 
 # ---------------------------------------------------------
-# Read Synthesized Netlist
-# (Netlist is read only to create design context;
-# unresolved cells are acceptable for floorplan-only task)
+# 4. Read synthesized netlist
 # ---------------------------------------------------------
-read_verilog -top $DESIGN_NAME ../../synthesis/output/vsdcaravel_synthesis.v
+puts "RM-info : Reading synthesized Verilog"
+read_verilog \
+    -design ${DESIGN_NAME}/${INIT_DP_LABEL_NAME} \
+    -top ${DESIGN_NAME} \
+    ${VERILOG_NETLIST_FILES}
 
-current_design $DESIGN_NAME
+# ---------------------------------------------------------
+# 5. Technology setup (routing directions, sites)
+# ---------------------------------------------------------
+if {$TECH_FILE != "" || ($TECH_LIB != "" && !$TECH_LIB_INCLUDES_TECH_SETUP_INFO)} {
+    if {[file exists [which $TCL_TECH_SETUP_FILE]]} {
+        puts "RM-info : Sourcing $TCL_TECH_SETUP_FILE"
+        source -echo $TCL_TECH_SETUP_FILE
+    }
+}
 
 # ---------------------------------------------------------
-# Floorplan Definition (MANDATORY)
-# Die Size  : 3.588 mm × 5.188 mm
-# Core Margin : 200 µm on all sides
-#
-# NOTE:
-# This ICC2 version requires die-controlled initialization
-# using -control_type die and -boundary syntax.
+# 6. Parasitic tech (TLU+)
 # ---------------------------------------------------------
+if {[file exists [which $TCL_PARASITIC_SETUP_FILE]]} {
+    puts "RM-info : Sourcing parasitic tech file"
+    source -echo $TCL_PARASITIC_SETUP_FILE
+}
+
+# ---------------------------------------------------------
+# 7. Routing layer limits
+# ---------------------------------------------------------
+if {$MAX_ROUTING_LAYER != ""} {
+    set_ignored_layers -max_routing_layer $MAX_ROUTING_LAYER
+}
+if {$MIN_ROUTING_LAYER != ""} {
+    set_ignored_layers -min_routing_layer $MIN_ROUTING_LAYER
+}
+
+# ---------------------------------------------------------
+# 8. Pre-floorplan sanity check
+# ---------------------------------------------------------
+if {$CHECK_DESIGN} {
+    redirect -file ${REPORTS_DIR_INIT_DP}/check_design.pre_floorplan {
+        check_design -checks dp_pre_floorplan
+    }
+}
+
+# ---------------------------------------------------------
+# 9. FLOORPLAN (PAD-RING SAFE)
+# ---------------------------------------------------------
+puts "RM-info : Initializing floorplan with pad ring margin"
+
 initialize_floorplan \
     -control_type die \
     -boundary {{0 0} {3588 5188}} \
-    -core_offset {200 200 200 200}
-# ---------------------------------------------------------
-# IO Regions using Placement Blockages (Corrected)
-# ---------------------------------------------------------
-
-# Bottom IO region (along bottom die edge)
-create_placement_blockage \
-  -name IO_BOTTOM \
-  -type hard \
-  -boundary {{0 0} {3588 100}}
-
-# Top IO region (along top die edge)
-create_placement_blockage \
-  -name IO_TOP \
-  -type hard \
-  -boundary {{0 5088} {3588 5188}}
-
-# Left IO region (along left die edge)
-create_placement_blockage \
-  -name IO_LEFT \
-  -type hard \
-  -boundary {{0 100} {100 5088}}
-
-# Right IO region (along right die edge)
-create_placement_blockage \
-  -name IO_RIGHT \
-  -type hard \
-  -boundary {{3488 100} {3588 5088}}
-
+    -core_offset {300 300 300 300}
 
 # ---------------------------------------------------------
-# Macro Placement
+# 10. CREATING A BLOCKAGE
 # ---------------------------------------------------------
-# NOTE:
-# No physical hard macros exist in this design.
-# RAM128 and RAM256 are RTL-based memory models that were
-# synthesized into logic and optimized away.
-# Therefore, no macro placement is performed here.
+create_placement_blockage -name CORNER_BL -type hard \
+  -boundary {{0 0} {300 300}}
+
+create_placement_blockage -name CORNER_BR -type hard \
+  -boundary {{3288 0} {3588 300}}
+
+create_placement_blockage -name CORNER_TL -type hard \
+  -boundary {{0 4888} {300 5188}}
+
+create_placement_blockage -name CORNER_TR -type hard \
+  -boundary {{3288 4888} {3588 5188}}
+# ---------------------------------------------------------
+# 11. Save floorplan
 # ---------------------------------------------------------
 
-# ---------------------------------------------------------
-# Reports
-# ---------------------------------------------------------
-report_floorplan > ../reports/floorplan_report.txt
+puts "\nRM-info : =============================================="
+puts "RM-info : Floorplan stage completed successfully"
+puts "RM-info : Design      : Raven Wrapper"
+puts "RM-info : Owner       : Divya Darshan"
+puts "RM-info : Tool        : Synopsys IC Compiler II"
+puts "RM-info : Status      : PASS"
+puts "RM-info : ==============================================\n"
 
-# ---------------------------------------------------------
-# Save and Launch GUI
-# ---------------------------------------------------------
-save_block -force -label FLOORPLAN_ONLY
+
+
+save_block -force -label floorplan
 save_lib -all
-start_gui
-
 ```

@@ -170,8 +170,7 @@ This offset ensures:
 - Reduced congestion near the die edge
 - Compliance with typical SoC floorplanning practices
 
-The selected core offset aligns with the **IO pad pitch and placement strategy**
-used in this design and is therefore intentional and required.
+The selected core offset aligns with the **IO pad pitch and placement strategy** used in this design and is therefore intentional and required.
 
 ---
 ## 9. Aspect Ratio Analysis
@@ -295,15 +294,6 @@ save_lib -all
 - Preserves current floorplan snapshot.
 
 ---
-## 13. Floorplan Reporting and Validation
-
-
-
-
-
-
----
-
 ## 14. Core Utilization
 
 **Definition**
@@ -321,8 +311,7 @@ Core Utilization = (320835.1020 / 13649624.5480) * 100 ≈ 2.35 %
 ```
 ### Utilization Interpretation
 
-The achieved core utilization is **2.35%**, which appears low but is
-**expected and acceptable** for this stage.
+The achieved core utilization is **2.35%**, which appears low but is **expected and acceptable** for this stage.
 
 Reasoning:
 - The design is a **top-level wrapper** with limited standard-cell logic
@@ -330,6 +319,82 @@ Reasoning:
 - Floorplanning focuses on **spatial planning**, not area optimization
 
 Utilization will be revisited and optimized during placement and implementation stages.
+
+---
+## 14. Floorplan Reporting and Validation
+
+### 1️⃣ Report Core Utilization
+
+```bash
+report_utilization
+```
+
+**Purpose:**
+
+- Reports the percentage of core area used by standard cells.
+- Helps verify if the floorplan has enough free space for logic placement.
+- Provides early feedback on design density.
+
+**Screenshot:** Utilization report in ICC2 GUI
+
+![phy](.Screenshots/util.jpeg)
+
+---
+### 2️⃣ Report Physical Design
+
+```bash
+report_design -physical
+```
+**Purpose:**
+
+- Lists physical attributes of the current block, including:
+- Die size
+- Core area
+- Placement blockages
+- Confirms that the floorplan matches intended dimensions.
+
+**📷 Screenshot:**  Physical design report
+
+![phy](.Screenshots/phy.jpeg)
+
+---
+### 3️⃣ Get Current Block Boundary
+
+```bash
+get_attribute [current_block] boundary
+```
+**Purpose:**
+
+- Retrieves the die boundary coordinates of the current design block.
+- Ensures that the die and core offset are correctly set.
+
+**📷 Screenshot:** Boundary attributes displayed in ICC2
+
+
+![phy](.Screenshots/boundary.jpeg)
+
+---
+### 4️⃣ General Floorplan Design Report
+
+```bash
+report_design
+```
+
+**Purpose:**
+
+- Provides a summary of the floorplan, including:
+- Cell counts
+- Macros
+- IO pads
+- Useful for overall floorplan verification before proceeding to placement.
+
+**📷 Screenshot:** Complete floorplan summary
+
+
+![phy](.Screenshots/design1.jpeg)
+
+
+![phy](.Screenshots/design2.jpeg)
 
 ---
 
@@ -349,8 +414,14 @@ This will be refined in later stages; however, the current distribution and corr
 
 ### IO Pad Placement and Fixing
 
+- IO Pad constraints were given already in the file `pad_constraint.tcl'
 
+For the io pad constraint script, refer here 👉 [pad_constraint.tcl](pad_constraint.tcl.md)
 
+```bash
+source $TCL_PAD_CONSTRAINTS_FILE
+place_io
+```
 **IO Placement Screenshot**
 
 
@@ -432,6 +503,7 @@ The chosen halo value ensures:
 
 This is a **conservative, industry-acceptable halo** for a single SRAM macro at the SoC floorplanning stage.
 
+![io](.Screenshots/macro.jpeg)
 
 ### Halo Placing
 ```bash
@@ -450,8 +522,7 @@ report_keepout_margin [get_keepout_margins sram*]
 ---
 ## 13. Power Feasibility (Conceptual)
 
-Although a detailed Power Delivery Network (PDN) is not implemented in this task,
-the floorplan is **power-feasible by construction**.
+Although a detailed Power Delivery Network (PDN) is not implemented in this task, the floorplan is **power-feasible by construction**.
 
 - A **300 µm core offset** reserves sufficient space for:
   - Core power rings (VDD/VSS)
@@ -460,14 +531,12 @@ the floorplan is **power-feasible by construction**.
 - SRAM macro placement accounts for future macro power connectivity
 - The floorplan does not restrict PDN routing paths
 
-This ensures that the design can support
-robust power planning in subsequent physical design stages.
+This ensures that the design can support robust power planning in subsequent physical design stages.
 
 ---
 ## 16. Why the Flow Stops Here
 
-This task intentionally stops at the **floorplanning stage** to maintain
-a clear separation between **planning** and **implementation**.
+This task intentionally stops at the **floorplanning stage** to maintain a clear separation between **planning** and **implementation**.
 
 - The objective is to validate:
   - Die and core definition
@@ -479,8 +548,7 @@ a clear separation between **planning** and **implementation**.
   - Congestion analysis
   - Power grid design
 
-These activities are deliberately deferred to later stages
-of the physical design flow.
+These activities are deliberately deferred to later stages of the physical design flow.
 
 ---
 ## 17. Key Learnings
