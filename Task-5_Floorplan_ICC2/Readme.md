@@ -357,18 +357,6 @@ This will be refined in later stages; however, the current distribution and corr
 ![fp](.Screenshots/io_placement.jpeg)
 
 
-**Raven Wrapper `CLOCK` Port**
-
-
-![fp](.Screenshots/clock.jpeg)
-
-
-**Raven Wrapper `Reset` Port**  
-
-
-![fp](.Screenshots/resetb.png)
-
-
 ### IO Visibility
 
 - All top-level ports are visible using:
