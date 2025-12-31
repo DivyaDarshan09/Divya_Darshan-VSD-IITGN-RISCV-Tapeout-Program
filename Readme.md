@@ -1,4 +1,5 @@
 # India RISC-V SoC Tapeout Program - Phase 2 
+### Project Title : SoC-Level Wishbone & GPIO RTL Enhancement and Validation for VSDCaravel RISC-V SoC (SCL-180)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Completed-success"/>
