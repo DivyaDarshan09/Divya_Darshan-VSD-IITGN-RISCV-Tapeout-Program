@@ -92,7 +92,7 @@ style engineering**, covering:-
 - No open-source simulators in final flow
 
 ---
-# 🧩 Task-0 (Day-1): Caravel SoC HK-SPI Verification (RTL + GLS)
+## 🧩 Task-0 (Day-1): Caravel SoC HK-SPI Verification (RTL + GLS)
 
 ### 🎯 What I Did
 
@@ -131,7 +131,7 @@ style engineering**, covering:-
 - Established a **stable verification baseline** for all subsequent Phase-2 work
 
 ---
-# 🧩 Task-1: RISC-V Reference SoC Replication (RTL + GLS)
+## 🧩 Task-1: RISC-V Reference SoC Replication (RTL + GLS)
 
 ### 🎯 What I Did
 
@@ -167,7 +167,7 @@ style engineering**, covering:-
 
 ---
 
-# 🧩 Task-2: Migration to Synopsys-Only Flow (VCS + DC_SHELL)
+## 🧩 Task-2: Migration to Synopsys-Only Flow (VCS + DC_SHELL)
 
 ### 🎯 What I Did
 
@@ -199,7 +199,7 @@ style engineering**, covering:-
 
 ---
 
-# 🧩 Task-3: Removal of On-Chip POR (Architectural Change)
+## 🧩 Task-3: Removal of On-Chip POR (Architectural Change)
 
 ### 🎯 What I Did
 
@@ -231,7 +231,7 @@ style engineering**, covering:-
 
 ---
 
-# 🧩 Task-4: Management SoC DV Validation (POR-Free Design)
+## 🧩 Task-4: Management SoC DV Validation (POR-Free Design)
 
 ### 🎯 What I Did
 
@@ -264,7 +264,7 @@ style engineering**, covering:-
 
 ---
 
-# 🧩 Task-5: SoC Floorplanning Using ICC2 (Floorplan Only)
+## 🧩 Task-5: SoC Floorplanning Using ICC2 (Floorplan Only)
 
 ### 🎯 What I Did
 
@@ -291,7 +291,7 @@ style engineering**, covering:-
 - Valid floorplan snapshot with visible die, core, and pads
 
 ---
-# 🧩 Task-6: Backend Flow Bring-Up — Floorplanning & Routing Attempt (100 MHz)
+## 🧩 Task-6: Backend Flow Bring-Up — Floorplanning & Routing Attempt (100 MHz)
 
 ### 🎯 What I Did
 
