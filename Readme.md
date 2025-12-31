@@ -1,30 +1,29 @@
-# India RISC-V SoC Tapeout Program - Phase 2 
-# (Divya Darshan VR)
+# India RISC-V SoC Tapeout Program - Phase 2 |  Divya Darshan VR
+ <p align="center">
+ <strong>A system does not truly begin at power-on; it begins when its reset behavior is correct.</strong>
+ </P>
+ ---
+<br>
 
 <p align="center">
-<strong>VLSI System Design (VSD) × IIT Gandhinagar</strong>
+  <strong>VLSI System Design (VSD) × IIT Gandhinagar</strong>
 </p>
 
-
-
+<br><br>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Completed-success"/>
   <img src="https://img.shields.io/badge/PDK-SCL--180-blue"/>
-  <img src="https://img.shields.io/badge/Tools-VCS%20%7C%20DC_TOPO%20%7C%20ICC2-orange"/>
+  <img src="https://img.shields.io/badge/Tools-VCS%20%7C%20DC_SHELL%20%7C%20ICC2-orange"/>
   <img src="https://img.shields.io/badge/Focus-RTL%20%7C%20GLS%20%7C%20Reset%20Architecture-purple"/>
   <img src="https://img.shields.io/badge/Execution-Industry--Grade-critical"/>
 </p>
 
-
-
-
-
+<br><br><br>
 
 <p align="center">
   <img src="Images/thanks.png" width="700"/>
 </p>
-
 
 ---
 
