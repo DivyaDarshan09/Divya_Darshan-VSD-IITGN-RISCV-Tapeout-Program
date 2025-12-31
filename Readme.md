@@ -1,15 +1,4 @@
 # India RISC-V SoC Tapeout Program - Phase 2 |  Divya Darshan VR
- <p align="center">
- <strong>A system does not truly begin at power-on; it begins when its reset behavior is correct.</strong>
- </P>
- ---
-<br>
-
-<p align="center">
-  <strong>VLSI System Design (VSD) × IIT Gandhinagar</strong>
-</p>
-
-<br><br>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Completed-success"/>
@@ -18,6 +7,20 @@
   <img src="https://img.shields.io/badge/Focus-RTL%20%7C%20GLS%20%7C%20Reset%20Architecture-purple"/>
   <img src="https://img.shields.io/badge/Execution-Industry--Grade-critical"/>
 </p>
+
+
+ <p align="center">
+ <strong>Great engineers are not defined by what works in simulation, but by what continues to work when assumptions are removed.</strong>
+ </P>
+ 
+
+<br>
+
+<p align="center">
+  <strong>VLSI System Design (VSD) × IIT Gandhinagar</strong>
+</p>
+
+
 
 <br><br><br>
 
