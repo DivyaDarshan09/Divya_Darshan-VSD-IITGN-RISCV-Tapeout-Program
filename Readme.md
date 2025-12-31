@@ -1,4 +1,4 @@
-# India RISC-V SoC Tapeout Program - Phase 2 |  Divya Darshan VR
+# India RISC-V SoC Tapeout Program - Phase 2 
 
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Completed-success"/>
@@ -10,17 +10,9 @@
 
 
  <p align="center">
- <strong>Great engineers are not defined by what works in simulation, but by what continues to work when assumptions are removed.</strong>
+ <strong>🚀Great engineers are not defined by what works in simulation, but by what continues to work when assumptions are removed.</strong>
  </P>
  
-
-<br>
-
-<p align="center">
-  <strong>VLSI System Design (VSD) × IIT Gandhinagar</strong>
-</p>
-
-
 
 <br><br><br>
 
