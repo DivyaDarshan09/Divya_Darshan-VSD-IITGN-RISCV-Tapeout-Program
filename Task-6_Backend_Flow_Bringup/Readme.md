@@ -1,5 +1,4 @@
 # 🚀 Task 6 — Backend Flow Bring-Up @ 100 MHz  
-## ICC2 → Star-RC → PrimeTime
 
 <p align="center">
   <img src="https://img.shields.io/badge/Target_Frequency-100MHz-brightgreen"/>
@@ -24,6 +23,15 @@ This task demonstrates:
 
 ---
 
+<p align="center">
+  <img src="Images/raven_soc_chip.png" width="700"/>
+</p>
+
+<p align="center">
+<em>High-level architecture of the Raven RISC-V SoC</em>
+</p>
+
+---
 ## 🎯 Performance Target
 
 | Parameter | Value |
@@ -84,6 +92,17 @@ This task demonstrates:
 4. **Timing Libraries:** `.db` files for standard cells and SRAM
 5. **TLU+ Files:** Parasitic extraction models
 6. **Constraint Files:** MCMM setup, timing constraints
+
+---
+## 🧠 SoC Architecture Overview
+
+<p align="center">
+  <img src="Images/raven_soc_architecture.png" width="800"/>
+</p>
+
+<p align="center">
+<em>High-level architecture of the Raven RISC-V SoC</em>
+</p>
 
 ---
 ## 🛠 Toolchain Used
@@ -199,3 +218,284 @@ set MAX_ROUTING_LAYER "metal10"
 - Matches standard industry routing practices
 - Ensures routers use only valid metal layers
 - Provides compatibility with power grid planning
+
+---
+### Phase 1: Floorplanning 🧭
+
+#### Purpose
+
+The floorplanning phase establishes the **physical foundation** of the design by defining the die, core, IO boundaries, and macro placement. All subsequent backend stages depend on the correctness of this step.
+
+---
+#### Scope of Work
+
+During this phase, the following were completed:
+
+- ✔ Die and core dimension definition  
+- ✔ Core offset and utilization planning  
+- ✔ IO pad placement on all four sides  
+- ✔ SRAM macro placement with orientation control  
+- ✔ Macro halos and placement blockages  
+- ✔ Core-edge keepout regions  
+
+This ensured a **routing-aware, power-aware, and congestion-safe** physical structure before advancing to power planning.
+
+---
+#### Detailed Floorplan Documentation 📐
+
+> 🔍 **Note:**  
+> A **complete, step-by-step floorplanning explanation** — including scripts, placement visuals, reports, and execution logs — is documented in detail here:
+
+👉 **Refer to:**  
+📐 [Phase-1: Floorplanning ](../Task-5_Floorplan_ICC2/Readme.md)
+
+#### Outcome
+
+- Floorplan validated with no critical DRC violations  
+- Clean handoff achieved for power planning  
+- Design marked **placement-ready**  
+
+---
+### Phase 2: Power Planning
+
+#### Purpose
+
+The power planning stage defines a robust **power delivery infrastructure** that guarantees reliable VDD/VSS distribution across the entire chip. The intent of this phase is to ensure that all logic elements receive stable power with minimal voltage degradation, while maintaining manufacturability and routing efficiency.
+
+#### Key Objectives
+
+- Establish uninterrupted **power and ground connectivity** from pads to standard cells  
+- Maintain voltage drop within acceptable margins  
+- Construct core-level **power rings**  
+- Distribute power using **multi-layer mesh structures**  
+- Provide sufficient **via density** between metal layers  
+
+---
+
+#### Power Distribution Architecture
+
+The power delivery network spans multiple routing layers, each serving a defined role:
+
+- **Metal1 (M1):** Integrated standard-cell power rails  
+- **Metal2 (M2):** Vertical power connections from cell rails  
+- **Metal9–Metal10:** High-capacity global power mesh  
+
+---
+
+#### Power Ring Configuration
+
+A closed-loop power ring was created around the core boundary to act as the primary interface between IO power pads and the internal mesh.
+
+- Ring width: 4–6 µm per net  
+- Ring offset: ~10 µm from core boundary  
+- Dedicated VDD and VSS conductors  
+
+---
+
+#### Power Mesh Strategy
+
+To ensure uniform current distribution, a dual-layer mesh was implemented:
+
+- **Metal9:** Vertical stripes (alternating VDD/VSS)  
+- **Metal10:** Horizontal stripes (alternating VDD/VSS)  
+- Typical pitch: ~50 µm  
+- Stripe width: ~2 µm  
+
+This configuration ensures coverage across the entire core area while minimizing routing congestion.
+
+---
+
+#### Via Connectivity Plan
+
+Inter-layer connectivity was achieved using strategically placed vias:
+
+- M1 ↔ M2: Standard cell rail connections  
+- M2 ↔ M3: Intermediate routing transitions  
+- M8 ↔ M9: Entry into global mesh  
+- M9 ↔ M10: Cross-layer mesh reinforcement  
+- Typical via spacing: 5–10 µm  
+
+---
+
+#### Power Planning Implementation
+
+**Power grid generation was scripted using ICC2 as shown below:**
+
+```tcl
+create_pg_region -name PG_CORE \
+   -region {{core_x1 core_y1} {core_x2 core_y2}}
+
+create_pg_strategy -name pg_mesh_strategy \
+   -layers {metal9 metal10} \
+   -stripe_width {2.0 2.0} \
+   -stripe_pitch {50 50}
+
+create_pg_pattern -name VDD_pattern \
+   -strategy pg_mesh_strategy \
+   -net VDD
+
+create_pg_pattern -name VSS_pattern \
+   -strategy pg_mesh_strategy \
+   -net VSS
+
+compile_pg
+```
+---
+#### Power Grid Validation
+
+Power grid correctness was verified by:
+
+*   Ensuring all power pads connected to rings
+*   Checking for floating PG segments 
+*   Confirming continuity from pads to standard cells
+    
+
+![pwr](.Screenshots/pwr.png)
+
+
+![pwr](.Screenshots/sram_pwr.jpeg)
+
+---
+**Screenshot** : Power Planning log
+
+![pwr](.Screenshots/pwr_rpt.jpeg)
+
+---
+#### IR Drop Considerations
+
+Key factors evaluated during power integrity review:
+
+*   Worst-case IR drop near core corners
+*   Impact of cell density on local current demand  
+*   Mesh pitch vs voltage stability trade-offs
+    
+
+**Acceptance target:**
+
+```bash
+ IR drop ≤ 5% of nominal supply voltage
+```
+---
+#### Power Planning Outputs
+
+*   raven\_wrapper.post\_power.def — DEF with power geometry
+*   PG reports covering mesh coverage and connectivity
+*   Block savepoint: post\_power
+    
+The generated DEF was later reused as an input reference for **DC\_Topo synthesis alignment**.
+    
+**Screenshot** : Power Planning log
+
+![pwr](.Screenshots/def.jpeg)
+
+---
+### Phase 3: Standard Cell Placement
+
+#### Purpose
+
+The placement phase translates the synthesized netlist into a physically realizable layout by positioning over **45,000 standard cells** within the defined core while respecting timing, congestion, and density constraints.
+
+---
+#### Placement Objectives
+
+*   Optimize **critical path proximity**
+*   Maintain balanced cell distribution
+*   Control routing congestion
+*   Minimize overall wirelength  
+*   Ensure legal, site-aligned placement
+
+---
+#### Initial Placement
+
+Placement was initiated using ICC2’s hierarchical placement engine:
+
+*   Cell snapping aligned to site grids
+*   Target utilization: ~65%
+*   Fixed macros treated as placement obstacles
+*   IO-aware proximity optimization
+
+---
+#### Placement Optimization
+
+Final refinement was performed using:
+```bash
+place_opt
+```
+
+This stage involved:
+
+1.  Timing-driven cell movement
+2.  Automatic hold-fix buffer insertion
+3.  Setup-path optimization through cell resizing
+4.  Legalization and placement cleanup
+    
+---
+#### Cell Composition
+
+Approximate cell composition across the core:
+
+| Category            | Approx. Share |
+| ------------------- | ------------- |
+| Combinational logic | ~40%          |
+| Flip-flops          | ~20%          |
+| Buffers & drivers   | ~15%          |
+| Specialized cells   | ~25%          |
+
+---
+#### Density and Congestion Control
+
+*   Higher density near SRAM macro
+*   Moderate density across logic regions
+*   Reduced density near IO boundaries
+    
+Congestion estimation tools highlighted routing pressure zones, allowing early visibility into potential routing risks.
+
+---
+#### Placement Visualization
+
+The final placement view confirms:
+
+*   Uniform distribution of logic
+*   Clean macro boundaries
+*   Adequate whitespace for routing
+
+**Screenshot** : Placement of Standard cells
+
+![pwr](.Screenshots/place.jpeg)
+
+---
+### Placement Execution Log
+
+The placement process generates logs showing cell placement statistics, optimization iterations, quality of results metrics, and convergence information.
+
+![pwr](.Screenshots/place_term.jpeg)
+
+![pwr](.Screenshots/place_rpt.jpeg)
+
+---
+#### Placement Outputs
+
+*   raven\_wrapper.post\_place.def — Placed DEF
+*   raven\_wrapper.post\_place.v — Updated netlist
+*   Reports:
+    *   report\_placement.rpt
+    *   report\_qor.rpt
+    *   report\_congestion.rpt
+*   Block savepoint: post\_place
+
+---
+## Engineering Transition — RTL Debug Track
+
+- To avoid blocking overall project progress, the team workflow was strategically split:
+        - PD Track: Continued investigation of PG and routing issues
+        - RTL Debug Track: Deep RTL-level analysis and verification
+- I transitioned to the RTL Debug Track, where I contributed to:
+        - Wishbone protocol correctness
+        - GPIO architecture and reset behavior
+        - POR-free reset migration
+        - External reset buffering validation
+        - RTL ↔ GLS equivalence checking
+        - SoC wrapper integration correctness
+- This ensured the functional integrity of the design before proceeding further in backend stages.
+
+---
