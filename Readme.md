@@ -1,16 +1,22 @@
-# India RISC-V SoC Tapeout Program - Phase 2 (Divya Darshan VR)
+# India RISC-V SoC Tapeout Program - Phase 2 
+# (Divya Darshan VR)
 
 <p align="center">
 <strong>VLSI System Design (VSD) × IIT Gandhinagar</strong>
 </p>
 
+
+
+
 <p align="center">
-![Status](https://img.shields.io/badge/Status-Completed-success)
-![PDK](https://img.shields.io/badge/PDK-SCL--180-blue)
-![Tools](https://img.shields.io/badge/Tools-VCS%20%7C%20DC_TOPO%20%7C%20ICC2orange)
-![Focus](https://img.shields.io/badge/FocusRTL%20%7C%20GLS%20%7C%20Reset%20Architecture-purple)
-![Level](https://img.shields.io/badge/Execution-Industry--Grade-critical)
+  <img src="https://img.shields.io/badge/Status-Completed-success"/>
+  <img src="https://img.shields.io/badge/PDK-SCL--180-blue"/>
+  <img src="https://img.shields.io/badge/Tools-VCS%20%7C%20DC_TOPO%20%7C%20ICC2-orange"/>
+  <img src="https://img.shields.io/badge/Focus-RTL%20%7C%20GLS%20%7C%20Reset%20Architecture-purple"/>
+  <img src="https://img.shields.io/badge/Execution-Industry--Grade-critical"/>
 </p>
+
+
 
 
 
