@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/Goal-End--to--End_Flow_Validation-success"/>
 </p>
 
----
+
 
 ## 📌 Objective
 
@@ -24,7 +24,7 @@ This task demonstrates:
 ---
 
 <p align="center">
-  <img src="Images/raven_soc_chip.png" width="700"/>
+  <img src=".Screenshots/raven_chip.png" width="700"/>
 </p>
 
 <p align="center">
@@ -97,7 +97,7 @@ This task demonstrates:
 ## 🧠 SoC Architecture Overview
 
 <p align="center">
-  <img src="Images/raven_soc_architecture.png" width="800"/>
+  <img src=".Screenshots/raven_arch.png" width="800"/>
 </p>
 
 <p align="center">
