@@ -1,17 +1,24 @@
-# Phase-2 India RISC-V Tapeout Program  
+# India RISC-V SoC Tapeout Program - Phase 2 (Divya Darshan VR)
+
 <p align="center">
 <strong>VLSI System Design (VSD) × IIT Gandhinagar</strong>
 </p>
 
 <p align="center">
-  <img src="Images/thanks.png" width="700"/>
-</p>
-
 ![Status](https://img.shields.io/badge/Status-Completed-success)
 ![PDK](https://img.shields.io/badge/PDK-SCL--180-blue)
 ![Tools](https://img.shields.io/badge/Tools-VCS%20%7C%20DC_TOPO%20%7C%20ICC2orange)
 ![Focus](https://img.shields.io/badge/FocusRTL%20%7C%20GLS%20%7C%20Reset%20Architecture-purple)
 ![Level](https://img.shields.io/badge/Execution-Industry--Grade-critical)
+</p>
+
+
+
+
+<p align="center">
+  <img src="Images/thanks.png" width="700"/>
+</p>
+
 
 ---
 
@@ -43,8 +50,13 @@ style engineering**, covering:-
 
 ![VSDCaravel Architecture](Images/vsdcaravel.png)
 
+
+
 * This architectural view highlights the exact subset of the `VSDCaravel SoC` that I worked on during `Phase-2`, focusing on `reset architecture`, `GPIO subsystem behavior`, `Wishbone` access control, and debug integration.  
 * DV/testbench logic and unrelated SoC blocks are intentionally excluded.
+
+
+
 
 <p align="center">
 <strong>This architecture view highlights the exact control-plane and integration blocks I worked on in VSDCaravel, not the complete SoC.</strong>
