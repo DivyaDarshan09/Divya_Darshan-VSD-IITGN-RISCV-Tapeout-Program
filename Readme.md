@@ -155,7 +155,7 @@ style engineering**, covering:-
 
 ---
 
-# 🧩 Task-2: Migration to Synopsys-Only Flow (VCS + DC_TOPO)
+# 🧩 Task-2: Migration to Synopsys-Only Flow (VCS + DC_SHELL)
 
 ### 🎯 What I Did
 
