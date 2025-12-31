@@ -10,7 +10,7 @@
 
 
  <p align="center">
- <strong>🚀Great engineers are not defined by what works in simulation, but by what continues to work when assumptions are removed.</strong>
+ <strong>🚀In silicon, confidence comes not from belief, but from verification.</strong>
  </P>
  
 
