@@ -1,4 +1,4 @@
-'''text
+```text
 set_attribute -objects [get_cells analog_out_sel_buf ] -name physical_status -value placed
 set_attribute -objects [get_cells bg_ena_buf ] -name physical_status -value placed
 set_attribute -objects [get_cells comp_ena_buf ] -name physical_status -value placed
